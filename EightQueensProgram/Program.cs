@@ -10,6 +10,7 @@ namespace EightQueensProgram
     {
         static void Main(string[] args)
         {
+            //thsi is a test
         }
     }
 }
