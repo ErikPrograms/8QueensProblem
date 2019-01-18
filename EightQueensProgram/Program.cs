@@ -10,7 +10,7 @@ namespace EightQueensProgram
     {
         static void Main(string[] args)
         {
-            
+          //  
         }
     }
 }
