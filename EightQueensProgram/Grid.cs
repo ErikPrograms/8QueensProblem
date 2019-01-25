@@ -10,11 +10,14 @@ namespace EightQueensProgram
     {
         private int height;
         private int width;
-        public int[] Spaces;
+        public int[,] Spaces;
 
-        public Grid BuildGrid(int Height, int Width)
+        public Grid(int Height, int Width)
         {
-            throw new NotImplementedException();
+            height = Height;
+            width = Width;
+
+            Spaces = new int[height,width];
         }
     }
 }
