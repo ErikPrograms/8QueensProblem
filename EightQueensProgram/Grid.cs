@@ -56,6 +56,12 @@ namespace EightQueensProgram
             return outString.ToString();
         }
 
+        public bool IsBoardValid()
+        {
+            //todo: Check if current grid layout is legal, if legal return true, else you return false
+            throw new NotImplementedException();
+        }
+
 
     }
 }

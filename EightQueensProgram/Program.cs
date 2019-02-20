@@ -19,9 +19,11 @@ namespace EightQueensProgram
 
             Console.WriteLine(testGrid.ToString());
 
-        }
+            
 
         }
+
+     }
 }
 
 

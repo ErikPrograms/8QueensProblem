@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace EightQueensProgram
 {
-    class Backtracker
+    public static class Backtracker
     {
+        public static void RunAI()
+        {
+            //todo: Implement Backtracking AI
+            throw new NotImplementedException();
+        }
     }
 }

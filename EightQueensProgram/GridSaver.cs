@@ -15,7 +15,7 @@ namespace EightQueensProgram
         /// Saves current state of grid to GridSaver
         /// </summary>
         /// <param name="SavedGrid"></param>
-        static void Save(Grid SavedGrid)
+        public static void Save(Grid SavedGrid)
         {
             grids.Push(SavedGrid);
         }
@@ -24,7 +24,7 @@ namespace EightQueensProgram
         /// Returns last grid without removing it from storage
         /// </summary>
         /// <returns></returns>
-        static Grid Load()
+        public static Grid Load()
         {
             return grids.Peek();
         }
@@ -34,7 +34,7 @@ namespace EightQueensProgram
         /// Returns last grid and removes it from storage
         /// </summary>
         /// <returns></returns>
-        static Grid LoadAndUndo()
+        public static Grid LoadAndUndo()
         {
             return grids.Pop();
         }
@@ -43,7 +43,7 @@ namespace EightQueensProgram
         /// Removes last saved state and returns the next one
         /// </summary>
         /// <returns></returns>
-        static Grid Undo()
+        public static Grid Undo()
         {
             grids.Pop();
             return grids.Peek();
