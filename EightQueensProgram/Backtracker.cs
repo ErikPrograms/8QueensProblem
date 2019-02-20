@@ -12,6 +12,15 @@ namespace EightQueensProgram
         {
             //todo: Implement Backtracking AI
             throw new NotImplementedException();
+
+            /* for each row in grid{
+             *      for each column in grid{
+             * 
+             *      }
+             * 
+             */
+            
+            
         }
     }
 }
