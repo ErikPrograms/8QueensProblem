@@ -11,12 +11,19 @@ You place a peice at the lowest spot in a row, then move to the next collum and 
 Example:
 
 Step 1        Step 2      Step 3       Step 4      Step 5      Ect
-| | | |       | | | |     | | | |      | | | |     | |X| |
+
+| | | |       | | | |     | | | |     | | | |      | |X| |
+
 | | | |       | | | |     | | | |      | |X| |     | | | |
+
 | | | |       |X| | |     |X|X| |      |X| | |     |X| | |
+
                -Place     -Place        -Place      -Place
+
 -Valid         -Valid     -Not Valid    -Not Valid  -Valid
+
 -Save          -Save      -Undo         - Undo      -Save
+
 
 
 Thsi process should continue untill you have done all solutions. You will know if you are at a soluation when a queen is in every row
