@@ -30,12 +30,12 @@ namespace EightQueensProgram
             Console.Write(workingGrid.ToString());
             Console.WriteLine($"Pointer at: {GridSaver.pointer.pHeight} , {GridSaver.pointer.pWidth}");
 
-            if (workingGrid.IsBoardValid() && GridSaver.pointer.pWidth == workingGrid.Width - 1)
+            if (workingGrid.IsBoardValid() && GridSaver.pointer.pWidth == workingGrid.Width - 1) //Found a solution
             {
                 GridSaver.SaveValid(workingGrid);
                 return true;
             }
-            else if (workingGrid.IsBoardValid())
+            else if (workingGrid.IsBoardValid()) //Move to next line
             {
                 GridSaver.Save(workingGrid);
                 Depth.Push(GridSaver.pointer.pHeight);
@@ -43,14 +43,14 @@ namespace EightQueensProgram
                 GridSaver.pointer.pHeight = 0;
                 RunCol();
             }
-            else if (GridSaver.pointer.pHeight != (workingGrid.Height - 1))
+            else if (GridSaver.pointer.pHeight != (workingGrid.Height - 1)) //Move down in current line
             {
                 workingGrid = GridSaver.LoadAndUndo();
                 GridSaver.Save(workingGrid);
                 GridSaver.pointer.pHeight++;
                 RunCol();
             }
-            else
+            else //No possible ansewr in current line, go back
             {
                 if (GridSaver.pointer.pHeight == (workingGrid.Height - 1))
                 {
