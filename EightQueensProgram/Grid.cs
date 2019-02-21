@@ -233,5 +233,31 @@ namespace EightQueensProgram
             return false;
         }
 
+        public override bool Equals(object obj)
+        {
+            Grid newGrid;
+            if(obj.GetType() != this.GetType())
+            {
+                return false;
+            }
+            else
+            {
+                newGrid = (Grid)obj;
+            }
+
+            for(int h = 0; h< this.height; h++)
+            {
+                for(int w = 0; w < this.width; w++)
+                {
+                    if(newGrid.Spaces[h,w] != this.Spaces[h, w])
+                    {
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        }
+
     }
 }

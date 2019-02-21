@@ -62,5 +62,19 @@ namespace EightQueensProgram
         {
             return validGrids;
         }
-    }
+
+        public static bool IsNotADoup(Grid grid)
+        {
+            foreach(Grid g in validGrids)
+            {
+                if (g.Equals(grid))
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
 }
+    }
+

@@ -16,9 +16,10 @@ namespace EightQueensProgram
             Console.SetWindowSize(60, 32);
             Grid testGrid = new Grid(GridHeight, GridWidth);
 
-            
 
-            Backtracker.RunAI(testGrid);
+
+            //Backtracker.RunAI(testGrid);
+            AI.Run(testGrid);
 
             Console.ForegroundColor = ConsoleColor.Green;
 
