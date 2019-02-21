@@ -12,12 +12,45 @@ namespace EightQueensProgram
         private int width;
         private bool[,] Spaces;
 
+        public int Height
+        {
+            get
+            {
+                return height;
+            }
+        }
+
+        public int Width
+        {
+            get
+            {
+                return width;
+            }
+        }
+
         public Grid(int Height, int Width)
         {
             height = Height;
             width = Width;
 
-            Spaces = new bool[height,width];
+            Spaces = new bool[height, width];
+        }
+
+        public Grid(Grid copy)
+        {
+            height = copy.height;
+            width = copy.width;
+
+            Spaces = new bool[height, width];
+
+            for(int x = 0; x < height; x++)
+            {
+                for(int y = 0; y < width; y++)
+                {
+                    this.Spaces[x, y] = copy.Spaces[x, y];
+                }
+            }
+
         }
 
         /// <summary>
@@ -27,7 +60,7 @@ namespace EightQueensProgram
         /// <param name="Width"></param>
         public void Place(int Height, int Width)
         {
-            Spaces[Height - 1, Width - 1] = true;
+            Spaces[Height, Width] = true;
         }
 
         /// <summary>
@@ -39,18 +72,18 @@ namespace EightQueensProgram
 
             StringBuilder outString = new StringBuilder();
             outString.Append("  ");
-            for(int i = 1; i<=width; i++)
+            for (int i = 1; i <= width; i++)
             {
                 outString.Append(" " + i + " ");
             }
             outString.AppendLine();
 
-            for(int loopcount = 0; loopcount < height; loopcount++)
+            for (int loopcount = 0; loopcount < height; loopcount++)
             {
                 outString.Append((loopcount + 1) + " ");
-                for(int innerloopcount = 0; innerloopcount < width; innerloopcount ++)
+                for (int innerloopcount = 0; innerloopcount < width; innerloopcount++)
                 {
-                    if(Spaces[loopcount,innerloopcount] == true)
+                    if (Spaces[loopcount, innerloopcount] == true)
                     {
                         outString.Append("|X|");
                     }
@@ -75,13 +108,13 @@ namespace EightQueensProgram
             bool ValidBoard = true;
             bool FoundOne = false;
 
-            for(int i= height - 1; i >= 0; i--)
+            for (int i = height - 1; i >= 0; i--)
             {
-                for(int y = width - 1; y >= 0; y--)
+                for (int y = width - 1; y >= 0; y--)
                 {
                     if (Spaces[i, y] == true)
                     {
-                        if(FoundOne == true)
+                        if (FoundOne == true)
                         {
                             ValidBoard = false;
                         }
@@ -121,13 +154,13 @@ namespace EightQueensProgram
 
             if (ValidBoard)
             {
-                for(int h = height - 1; h >= 0; h--)
+                for (int h = height - 1; h >= 0; h--)
                 {
-                    for(int w = width - 1; w >=0; w--)
+                    for (int w = width - 1; w >= 0; w--)
                     {
-                        if(Spaces[h,w] == true)
+                        if (Spaces[h, w] == true)
                         {
-                            if(CheckUp(h,w) || CheckDown(h,w))
+                            if (CheckUp(h, w) || CheckDown(h, w))
                             {
                                 ValidBoard = false;
                             }
@@ -136,7 +169,7 @@ namespace EightQueensProgram
                 }
             }
 
-           
+
 
             return ValidBoard;
 
@@ -146,16 +179,16 @@ namespace EightQueensProgram
 
         private bool CheckDown(int h, int w)
         {
-            if(h == height - 1 || w == 0)
+            if (h == height - 1 || w == 0)
             {
                 return false;
             }
 
-            if(Spaces[h + 1, w - 1] == true)
+            if (Spaces[h + 1, w - 1] == true)
             {
                 return true;
             }
-            else if(h != 0 || w != 0)
+            else if (h != 0 || w != 0)
             {
                 return CheckDown(h + 1, w - 1);
             }
@@ -169,7 +202,7 @@ namespace EightQueensProgram
 
         private bool CheckUp(int h, int w)
         {
-            if(h == 0 || w == 0)
+            if (h == 0 || w == 0)
             {
                 return false;
             }
@@ -189,7 +222,6 @@ namespace EightQueensProgram
 
             return false;
         }
-
 
     }
 }

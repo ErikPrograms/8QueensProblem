@@ -8,19 +8,82 @@ namespace EightQueensProgram
 {
     public static class Backtracker
     {
-        public static void RunAI()
-        {
-            //todo: Implement Backtracking AI
-            throw new NotImplementedException();
+        private static Grid workingGrid;
+        private static Stack<int> Depth;
 
-            /* for each row in grid{
-             *      for each column in grid{
-             * 
-             *      }
-             * 
-             */
-            
-            
+        public static void RunAI(Grid processedGrid)
+        {
+            workingGrid = processedGrid;
+            Depth = new Stack<int>();
+            GridSaver.pointer.pHeight = 0;
+            GridSaver.pointer.pWidth = 0;
+            GridSaver.Save(workingGrid);
+
+            RunCol();
+
+            Console.Write(processedGrid.ToString());
         }
+
+        private static bool RunCol()
+        {
+            workingGrid.Place(GridSaver.pointer.pHeight, GridSaver.pointer.pWidth);
+            Console.Write(workingGrid.ToString());
+            Console.WriteLine($"Pointer at: {GridSaver.pointer.pHeight} , {GridSaver.pointer.pWidth}");
+
+            if (workingGrid.IsBoardValid() && GridSaver.pointer.pWidth == workingGrid.Width - 1)
+            {
+                GridSaver.SaveValid(workingGrid);
+                return true;
+            }
+            else if (workingGrid.IsBoardValid())
+            {
+                GridSaver.Save(workingGrid);
+                Depth.Push(GridSaver.pointer.pHeight);
+                GridSaver.pointer.pWidth++;
+                GridSaver.pointer.pHeight = 0;
+                RunCol();
+            }
+            else if (GridSaver.pointer.pHeight != (workingGrid.Height - 1))
+            {
+                workingGrid = GridSaver.LoadAndUndo();
+                GridSaver.Save(workingGrid);
+                GridSaver.pointer.pHeight++;
+                RunCol();
+            }
+            else
+            {
+                if (GridSaver.pointer.pHeight == (workingGrid.Height - 1))
+                {
+                    BreakOutOfBottom();
+
+                }
+
+                RunCol();
+
+            }
+
+            return false;
+        }
+
+        private static void BreakOutOfBottom()
+        {
+            if (GridSaver.pointer.pHeight == (workingGrid.Height - 1))
+            {
+                GridSaver.pointer.pHeight = Depth.Pop();
+                workingGrid = GridSaver.LoadAndUndo();
+                GridSaver.pointer.pWidth--;
+
+                BreakOutOfBottom();
+            }
+            else
+            {
+                GridSaver.pointer.pHeight++;
+            }
+        }
+
+
+
+
     }
 }
+

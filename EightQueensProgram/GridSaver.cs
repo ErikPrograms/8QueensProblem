@@ -3,13 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Collections;
 
 namespace EightQueensProgram
 {
     public static class GridSaver
     {
         private static Stack<Grid> grids = new Stack<Grid>();
-
+        private static ArrayList validGrids = new ArrayList();
+        public static int ValidSolutions = 0;
+        public static Pointer pointer = new Pointer(0, 0);
 
         /// <summary>
         /// Saves current state of grid to GridSaver
@@ -17,7 +20,7 @@ namespace EightQueensProgram
         /// <param name="SavedGrid"></param>
         public static void Save(Grid SavedGrid)
         {
-            grids.Push(SavedGrid);
+            grids.Push(new Grid(SavedGrid));
         }
 
         /// <summary>
@@ -47,6 +50,17 @@ namespace EightQueensProgram
         {
             grids.Pop();
             return grids.Peek();
+        }
+
+        public static void SaveValid(Grid Valid)
+        {
+            ValidSolutions++;
+            validGrids.Add(Valid);
+        }
+
+        public static ArrayList GetValids()
+        {
+            return validGrids;
         }
     }
 }

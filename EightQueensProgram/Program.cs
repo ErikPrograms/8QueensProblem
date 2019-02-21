@@ -15,13 +15,15 @@ namespace EightQueensProgram
             Console.Title = "Queens Program";
             Console.SetWindowSize(60, 32);
             Grid testGrid = new Grid(GridHeight, GridWidth);
-            testGrid.Place(1, 2);
-            testGrid.Place(3, 3);
-
-            Console.WriteLine(testGrid.ToString());
-            Console.WriteLine(testGrid.IsBoardValid());
 
             
+
+            Backtracker.RunAI(testGrid);
+
+            ////Console.WriteLine(testGrid.ToString());
+            ////Console.WriteLine(testGrid.IsBoardValid());
+
+
 
         }
 
