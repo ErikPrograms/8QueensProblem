@@ -64,6 +64,16 @@ namespace EightQueensProgram
         }
 
         /// <summary>
+        /// Removes a queen on the board at that spot
+        /// </summary>
+        /// <param name="Height"></param>
+        /// <param name="Width"></param>
+        public void Remove(int Height, int Width)
+        {
+            Spaces[Height, Width] = false;
+        }
+
+        /// <summary>
         /// Printable view of grid
         /// </summary>
         /// <returns></returns>

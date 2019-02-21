@@ -18,7 +18,7 @@ namespace EightQueensProgram
             GridSaver.pointer.pHeight = 0;
             GridSaver.pointer.pWidth = 0;
             GridSaver.Save(workingGrid);
-
+            Depth.Push(0);
             RunCol();
 
             Console.Write(processedGrid.ToString());
@@ -33,7 +33,23 @@ namespace EightQueensProgram
             if (workingGrid.IsBoardValid() && GridSaver.pointer.pWidth == workingGrid.Width - 1) //Found a solution
             {
                 GridSaver.SaveValid(workingGrid);
-                return true;
+                if(GridSaver.pointer.pHeight != (workingGrid.Height - 1))
+                {
+                    workingGrid = GridSaver.LoadAndUndo();
+                    GridSaver.Save(workingGrid);
+                    GridSaver.pointer.pHeight++;
+                    RunCol();
+                }
+                else
+                {
+                    if (GridSaver.pointer.pHeight == (workingGrid.Height - 1))
+                    {
+                        BreakOutOfBottom();
+
+                    }
+
+                    RunCol();
+                }
             }
             else if (workingGrid.IsBoardValid()) //Move to next line
             {
@@ -50,7 +66,12 @@ namespace EightQueensProgram
                 GridSaver.pointer.pHeight++;
                 RunCol();
             }
-            else //No possible ansewr in current line, go back
+            else if (GridSaver.pointer.pHeight == workingGrid.Height - 1 && GridSaver.pointer.pWidth == 0 && !workingGrid.IsBoardValid())
+            {
+                return true;
+
+            }
+            else
             {
                 if (GridSaver.pointer.pHeight == (workingGrid.Height - 1))
                 {
@@ -59,7 +80,6 @@ namespace EightQueensProgram
                 }
 
                 RunCol();
-
             }
 
             return false;
@@ -67,11 +87,12 @@ namespace EightQueensProgram
 
         private static void BreakOutOfBottom()
         {
-            if (GridSaver.pointer.pHeight == (workingGrid.Height - 1))
+            if (GridSaver.pointer.pHeight == (workingGrid.Height - 1) && (GridSaver.pointer.pWidth != 0))
             {
                 GridSaver.pointer.pHeight = Depth.Pop();
                 workingGrid = GridSaver.LoadAndUndo();
                 GridSaver.pointer.pWidth--;
+                workingGrid.Remove(GridSaver.pointer.pHeight, GridSaver.pointer.pHeight);
 
                 BreakOutOfBottom();
             }

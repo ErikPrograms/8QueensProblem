@@ -20,6 +20,15 @@ namespace EightQueensProgram
 
             Backtracker.RunAI(testGrid);
 
+            Console.ForegroundColor = ConsoleColor.Green;
+
+            foreach(Grid grid in GridSaver.GetValids())
+            {
+                Console.WriteLine(grid.ToString());
+            }
+
+            Console.WriteLine($"I found: {GridSaver.ValidSolutions} valid solutions");
+
             ////Console.WriteLine(testGrid.ToString());
             ////Console.WriteLine(testGrid.IsBoardValid());
 
