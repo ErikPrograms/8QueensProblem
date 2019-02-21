@@ -1,5 +1,4 @@
-# If you are viewing this on github, click RAW to see correct formating
-
+# 8QueensProblem
 
 Current tasks:
 -Implement Backtracking AI
