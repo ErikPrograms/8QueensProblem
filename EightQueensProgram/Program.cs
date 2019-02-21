@@ -30,8 +30,9 @@ namespace EightQueensProgram
 
             Console.WriteLine($"I found: {GridSaver.ValidSolutions} valid solutions");
 
-            ////Console.WriteLine(testGrid.ToString());
-            ////Console.WriteLine(testGrid.IsBoardValid());
+            Console.WriteLine("Press any key to continue");
+
+            Console.ReadKey();
 
 
 
